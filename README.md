@@ -5,7 +5,7 @@ IMDB Spider
 This spider is written in python using the Scrapy framework. It is licensed under the MIT lisense. Do with it what you will. If you'd like to contribute please contact me at alexwhb(at)gmail(dot)com. 
 
 ## The Current State
-Currently this spider starts at the imdb top 250 movie page and goes through each film coppys it's title, and the link url then goes to each film page intern and collects a good chunk of the data avalible for each film. It then goes and sends that data to the Scrapy pipeline, where there is some cleaning that is done before it's finally saved into a sqlite3 db. 
+Currently this spider starts at the imdb top 250 movie page. It then goes through each film copies its title, and the link url, then goes to each film page intern and collects a good chunk of the data avalible. It then goes and sends that data to the Scrapy pipeline, where there is some cleaning that is done before it's finally saved into a sqlite3 db. The code is pretty crued at this point. It took me about 3 hours to write, and I deffinatly will be doing some major overhauling when I get more time. 
 
 Right now there is diffinatly room for improvment. I just wrote this because I've not seen vary many open source Scrapy spider projects, and I thought I'd give it a shot. 
 
