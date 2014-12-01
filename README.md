@@ -6,7 +6,7 @@ This spider is written in python using the Scrapy framework. It is licensed unde
 
 One thing to note if you do use this project, be aware that I'm not sure of the legality of this in a proffessinal setting, so use it at your own risk. Also be aware that you can get your ip address banned from websites if you scrap. There are ways of mitagating this risk such as adding delay between requests, which I've built into this by default, but nonetheless there is still risk. 
 
-To run this code you need to have (Python 2.7)[https://www.python.org/downloads/] installed on your computer and you need to have (Scrapy 0.24 installed)[http://scrapy.org/]
+To run this code you need to have [Python 2.7](https://www.python.org/downloads/) installed on your computer and you need to have [Scrapy 0.24 installed](http://scrapy.org/)
 
 ## The Current State
 Currently this spider starts at the imdb top 250 movie page. It then goes through each film copies its title, and the link url, then goes to each film page intern and collects a good chunk of the data avalible. It then goes and sends that data to the Scrapy pipeline, where there is some cleaning that is done before it's finally saved into a sqlite3 db. The code is pretty crued at this point. It took me about 3 hours to write, and I deffinatly will be doing some major overhauling when I get more time. 
