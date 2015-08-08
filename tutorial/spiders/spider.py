@@ -1,5 +1,5 @@
 import scrapy
-
+import re
 from tutorial.items import MovieItem, CastItem
 
 
@@ -13,16 +13,20 @@ class tutorialSpider(scrapy.Spider):
 	# for now this method just parses the top 250 IMDB page and has a callbck request to each title link 
 	# so I can parse more film info per film. 
 	def parse(self, response):
-		for sel in response.xpath("//*[@class='chart']/tbody/tr/td[2]"):
+		self.wanted_num=10#For testing easily,we may not want all these data which could take a very long time~
+		for sel in response.xpath("//*[@class='chart']/tbody/tr"):#//TODO==king it seems that IMDB has changed the html structure for these information
 			item = MovieItem()
-			item['Title'] = sel.xpath('a/text()').extract()[0]
-			item['Rating'] = sel.xpath('span[1]/@data-value').extract()[0]
-			item['Ranking'] = sel.xpath('span[1]/text()').re('\d+')[0]
-			item['ReleaseDate'] = sel.xpath('span[2]/@data-value').extract()[0]
-			item['MianPageUrl'] = "http://imdb.com"+sel.xpath('a/@href').extract()[0]
-
+			item['Title'] = sel.xpath('td[2]/a/text()').extract()[0]
+			item['Rating'] = sel.xpath('td[3]/strong/text()').extract()[0]
+			#have to use python's re model
+			item['Ranking'] = re.match(r'(^[0-9]+)',sel.xpath('td[2]/text()').extract()[0].__str__().strip()).group(1)
+			item['ReleaseDate'] = sel.xpath('td[2]/span[1]/text()').re(r'\d+')[0]
+			item['MianPageUrl'] = "http://imdb.com"+sel.xpath('td[2]/a/@href').extract()[0]
+			
 			request = scrapy.Request(item['MianPageUrl'], callback=self.parseMovieDetails)
 			request.meta['item'] = item
+			if(int(item['Ranking'])>=self.wanted_num+1):
+				return
 			yield request
 
 
