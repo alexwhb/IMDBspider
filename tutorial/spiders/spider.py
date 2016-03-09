@@ -39,8 +39,8 @@ class tutorialSpider(scrapy.Spider):
 
 
 	def getBasicFilmInfo(self, item, response):
-		item['Director'] = response.xpath("//div[@itemprop='director']/a/span/text()").extract()
-		item['Writers'] = response.xpath("//div[@itemprop='creator']/a/span/text()").extract() #this can deffinatly be multiple people. 
+		item['Director'] = response.xpath("//div/span[@itemprop='director']/a/span/text()").extract()
+		item['Writers'] = response.xpath("//div/span[@itemprop='creator']/a/span/text()").extract() #this can deffinatly be multiple people. 
 		item['Sinopsis'] = response.xpath("//div[@itemprop='description']").extract()[0] # this one is going to need to be cleaned up
 		item['Genres'] = response.xpath("//div[@itemprop='genre']/a/text()").extract()
 		item['MpaaRating'] = response.xpath("//span[@itemprop='contentRating']/text()").extract()[0]
