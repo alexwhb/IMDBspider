@@ -14,7 +14,7 @@ class tutorialSpider(scrapy.Spider):
 	# so I can parse more film info per film. 
 	def parse(self, response):
 		self.wanted_num=10#For testing easily,we may not want all these data which could take a very long time~
-		for sel in response.xpath("//*[@class='chart']/tbody/tr"):#//TODO==king it seems that IMDB has changed the html structure for these information
+		for sel in response.xpath("//*[contains(@class,'chart')]/tbody/tr"):#//TODO==king it seems that IMDB has changed the html structure for these information
 			item = MovieItem()
 			item['Title'] = sel.xpath('td[2]/a/text()').extract()[0]
 			item['Rating'] = sel.xpath('td[3]/strong/text()').extract()[0]
