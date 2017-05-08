@@ -22,11 +22,9 @@ I'd also like to clean up the code considerably, and get the system to be a bit 
 
 
 
-##License:
-<pre>
-The MIT License
-</pre>
+## License:
 
+The MIT License
 
 The MIT License (MIT)
 Copyright (c) 2014 Alex Black
