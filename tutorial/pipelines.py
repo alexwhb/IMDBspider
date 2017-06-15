@@ -195,10 +195,11 @@ class TutorialPipeline(object):
 
 
 
-from HTMLParser import HTMLParser
+from html.parser import HTMLParser
 
 class MLStripper(HTMLParser):
     def __init__(self):
+	super().__init__()
         self.reset()
         self.fed = []
     def handle_data(self, d):
