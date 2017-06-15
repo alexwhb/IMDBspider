@@ -68,6 +68,8 @@ class tutorialSpider(scrapy.Spider):
 			cast['Ranking'] = index 
 			cast['ActorName'] = self.ifNotEmptyGetIndex(castMember.xpath("td[2]/a/span/text()").extract())
 			cast['CharacterName'] = self.ifNotEmptyGetIndex(castMember.xpath("td[4]/div/a/text()").extract())
+			if not cast['CharacterName']:
+				cast['CharacterName'] = 'NA'
 			item['CastMembers'].append(cast)
 
 		return item
