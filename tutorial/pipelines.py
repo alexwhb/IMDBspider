@@ -32,8 +32,10 @@ class TutorialPipeline(object):
 					item[key] = templist
 				else:
 					item[key] = ""
-			else:
+			elif key is not 'MainPageUrl':
 				item[key] = self.stripHTML(value)
+			else:
+				item[key] = value
 
 		self.storeInDb(item)
 
