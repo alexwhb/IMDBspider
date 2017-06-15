@@ -6,6 +6,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 import sqlite3 as lite
+import six
 
 con = None # this is the db connection object. 
 # it gets created on init and deleted on __del__ just be carful of circular dependincys, because del might not get called in that case. 
@@ -18,7 +19,7 @@ class TutorialPipeline(object):
 		
 
 	def process_item(self, item, spider):
-		for key, value in item.iteritems():
+		for key, value in six.iteritems(item):
 			if key == "CastMembers":
 				continue
 
