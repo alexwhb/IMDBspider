@@ -62,8 +62,8 @@ class TutorialPipeline(object):
 			budget, \
 			language, \
 			country, \
-			gross_proffit, \
-			opening_weekend_proffit, \
+			gross_profit, \
+			opening_weekend_profit, \
 			aspect_ratio, \
 			sound_mix, \
 			color\
@@ -74,7 +74,7 @@ class TutorialPipeline(object):
 			float(item.get('Rating', 0.0)), 
 			int(item.get('Ranking', 0)), 
 			item.get('ReleaseDate',''), 
-			item.get('MianPageUrl', ''),
+			item.get('MainPageUrl', ''),
 			', '.join(item.get('Director', '')),
 			', '.join(item.get('Writers', '')),
 			item.get('Runtime', ''),
@@ -84,8 +84,8 @@ class TutorialPipeline(object):
 			self.cleanMoney(item.get('Budget','')),
 			item.get('Language', ''),
 			item.get('Country', ''),
-			self.cleanMoney(item.get('GrossProffit', '')),
-			self.cleanMoney(item.get('OpeningWeekendProffit', '')),
+			self.cleanMoney(item.get('GrossProfit', '')),
+			self.cleanMoney(item.get('OpeningWeekendProfit', '')),
 			item.get('AspectRatio', '').strip(),
 			', '.join(item.get('SoundMix', '')),
 			item.get('Color', '')
@@ -162,7 +162,7 @@ class TutorialPipeline(object):
 			release_date TEXT, \
 			page_url TEXT, \
 			director TEXT, \
-			writers Text, \
+			writers TEXT, \
 			runtime TEXT, \
 			sinopsis TEXT, \
 			genres TEXT, \
@@ -170,8 +170,8 @@ class TutorialPipeline(object):
 			budget TEXT, \
 			language TEXT, \
 			country TEXT, \
-			gross_proffit TEXT, \
-			opening_weekend_proffit TEXT, \
+			gross_profit TEXT, \
+			opening_weekend_profit TEXT, \
 			aspect_ratio TEXT, \
 			sound_mix TEXT, \
 			color TEXT \
