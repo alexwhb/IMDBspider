@@ -6,6 +6,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 import sqlite3 as lite
+import six
 
 con = None # this is the db connection object. 
 # it gets created on init and deleted on __del__ just be carful of circular dependincys, because del might not get called in that case. 
@@ -18,7 +19,7 @@ class TutorialPipeline(object):
 		
 
 	def process_item(self, item, spider):
-		for key, value in item.iteritems():
+		for key, value in six.iteritems(item):
 			if key == "CastMembers":
 				continue
 
@@ -31,8 +32,10 @@ class TutorialPipeline(object):
 					item[key] = templist
 				else:
 					item[key] = ""
-			else:
+			elif key is not 'MainPageUrl':
 				item[key] = self.stripHTML(value)
+			else:
+				item[key] = value
 
 		self.storeInDb(item)
 
@@ -62,8 +65,8 @@ class TutorialPipeline(object):
 			budget, \
 			language, \
 			country, \
-			gross_proffit, \
-			opening_weekend_proffit, \
+			gross_profit, \
+			opening_weekend_profit, \
 			aspect_ratio, \
 			sound_mix, \
 			color\
@@ -74,7 +77,7 @@ class TutorialPipeline(object):
 			float(item.get('Rating', 0.0)), 
 			int(item.get('Ranking', 0)), 
 			item.get('ReleaseDate',''), 
-			item.get('MianPageUrl', ''),
+			item.get('MainPageUrl', ''),
 			', '.join(item.get('Director', '')),
 			', '.join(item.get('Writers', '')),
 			item.get('Runtime', ''),
@@ -84,8 +87,8 @@ class TutorialPipeline(object):
 			self.cleanMoney(item.get('Budget','')),
 			item.get('Language', ''),
 			item.get('Country', ''),
-			self.cleanMoney(item.get('GrossProffit', '')),
-			self.cleanMoney(item.get('OpeningWeekendProffit', '')),
+			self.cleanMoney(item.get('GrossProfit', '')),
+			self.cleanMoney(item.get('OpeningWeekendProfit', '')),
 			item.get('AspectRatio', '').strip(),
 			', '.join(item.get('SoundMix', '')),
 			item.get('Color', '')
@@ -162,7 +165,7 @@ class TutorialPipeline(object):
 			release_date TEXT, \
 			page_url TEXT, \
 			director TEXT, \
-			writers Text, \
+			writers TEXT, \
 			runtime TEXT, \
 			sinopsis TEXT, \
 			genres TEXT, \
@@ -170,8 +173,8 @@ class TutorialPipeline(object):
 			budget TEXT, \
 			language TEXT, \
 			country TEXT, \
-			gross_proffit TEXT, \
-			opening_weekend_proffit TEXT, \
+			gross_profit TEXT, \
+			opening_weekend_profit TEXT, \
 			aspect_ratio TEXT, \
 			sound_mix TEXT, \
 			color TEXT \
@@ -195,10 +198,11 @@ class TutorialPipeline(object):
 
 
 
-from HTMLParser import HTMLParser
+from html.parser import HTMLParser
 
 class MLStripper(HTMLParser):
     def __init__(self):
+	super().__init__()
         self.reset()
         self.fed = []
     def handle_data(self, d):

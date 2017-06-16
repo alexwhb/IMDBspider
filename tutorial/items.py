@@ -13,7 +13,7 @@ class MovieItem(Item):
 	Rating = Field()
 	Ranking = Field() # this is the number it is in the list
 	ReleaseDate = Field()
-	MianPageUrl = Field()
+	MainPageUrl = Field()
 
 	# extra detials
 	Director = Field()
@@ -27,8 +27,8 @@ class MovieItem(Item):
 	Country = Field()
 
 	# technical details
-	GrossProffit = Field()
-	OpeningWeekendProffit = Field()
+	GrossProfit = Field()
+	OpeningWeekendProfit = Field()
 	AspectRatio = Field()
 	SoundMix = Field()
 	Color = Field()
