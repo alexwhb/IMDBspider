@@ -17,8 +17,8 @@ DOWNLOAD_DELAY = 5
 CONCURRENT_REQUESTS = 250
 
 ITEM_PIPELINES = {
-'tutorial.pipelines.TutorialPipeline': 0
+    'tutorial.pipelines.TutorialPipeline': 0
 }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
+# USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
