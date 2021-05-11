@@ -2,7 +2,7 @@ IMDB Spider
 ===========
 
 ## Notes
-This spider is written in python using the Scrapy framework. It is licensed under the MIT lisense. Do with it what you will. If you'd like to contribute please contact me at alexwhb(at)gmail(dot)com. 
+This spider is written in python using the Scrapy framework. It is licensed under the MIT lisense. Do with it what you will. If you'd like to contribute please send me a PR. 
 
 One thing to note if you do use this project, be aware that I'm not sure of the legality of this in a professional setting, so use it at your own risk. Also be aware that you can get your ip address banned from websites if you scrap. There are ways of mitigating this risk such as adding delay between requests, which I've built into this by default, but nonetheless there is still risk. 
 
